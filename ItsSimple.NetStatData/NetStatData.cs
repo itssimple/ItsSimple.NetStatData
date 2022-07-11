@@ -6,27 +6,41 @@ namespace ItsSimple.NetStatData
     [SupportedOSPlatform("windows")]
     public class NetStatData
     {
+        /// <summary>
+        /// Gets a unfiltered list of TCP connections through <c>GetExtendedTcpTable</c> from <c>iphlpapi.dll</c>
+        /// </summary>
+        /// <returns>Unfiltered list of TCP connections</returns>
         public static IEnumerable<MIB_TCPROW_OWNER_PID> GetTcpConnections()
         {
             return GetAllTcpConnections();
         }
 
+        /// <summary>
+        /// Gets a filtered list of TCP connections through <c>GetExtendedTcpTable</c> from <c>iphlpapi.dll</c>
+        /// </summary>
+        /// <returns>Filtered list of TCP connections</returns>
         public static IEnumerable<MIB_TCPROW_OWNER_PID> GetTcpConnections(Func<MIB_TCPROW_OWNER_PID, bool> predicate)
         {
             return GetAllTcpConnections().Where(predicate);
         }
 
+        /// <summary>
+        /// Gets a unfiltered list of TCP connections, with process information (executable path and owner)
+        /// </summary>
+        /// <returns>Unfiltered list of TCP connections, with process information</returns>
         public static IEnumerable<NetStatDataItem> GetTcpConnectionsWithProcessInformation()
         {
             return GetAllTcpConnections().Select(i => new NetStatDataItem(i));
         }
 
+        /// <summary>
+        /// Gets a filtered list of TCP connections, with process information (executable path and owner)
+        /// </summary>
+        /// <returns>Filtered list of TCP connections, with process information</returns>
         public static IEnumerable<NetStatDataItem> GetTcpConnectionsWithProcessInformation(Func<MIB_TCPROW_OWNER_PID, bool> predicate)
         {
             return GetAllTcpConnections().Where(predicate).Select(i => new NetStatDataItem(i));
         }
-
-
     }
 
     [SupportedOSPlatform("windows")]
@@ -66,7 +80,7 @@ namespace ItsSimple.NetStatData
         public string? ProcessExecutable { get; set; }
         public string? ProcessOwner { get; set; }
 
-        public NetStatDataItem(MIB_TCPROW_OWNER_PID row)
+        internal NetStatDataItem(MIB_TCPROW_OWNER_PID row)
         {
             LocalAddr = row.localAddr;
             LocalPort1 = row.localPort1;
