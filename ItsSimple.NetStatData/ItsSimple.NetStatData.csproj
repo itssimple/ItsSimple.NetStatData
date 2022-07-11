@@ -1,11 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net6.0-windows</TargetFramework>
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Company>NoLifeKing85 / itssimple</Company>
+		<Authors>NoLifeKing85</Authors>
+		<Copyright>2022 © NoLifeKing85 / itssimple</Copyright>
+		<PackageProjectUrl>https://github.com/itssimple/ItsSimple.NetStatData</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/itssimple/ItsSimple.NetStatData</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>netstat</PackageTags>
+		<PackageReadmeFile></PackageReadmeFile>
+		<Description>Allows you to get data like netstat, but in C#</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 </Project>
